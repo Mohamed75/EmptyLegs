@@ -17,6 +17,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"i3U88vlJRpG7OAS0ffsnn8priIJonXbtwaoT3l7R"
+                  clientKey:@"Szvlny3DO4eDGVSCyMJKseEp5z2HfoknzvNJmlSw"];
+    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    
+    [[ELDataController getSharedInstance] loadCargos];
+    
     return YES;
 }
 

@@ -1,0 +1,21 @@
+//
+//  PrefixHeader.pch
+//  EmptyLegs
+//
+//  Created by Mohamed Boumansour on 25/06/15.
+//  Copyright (c) 2015 explovia. All rights reserved.
+//
+
+#ifndef EmptyLegs_PrefixHeader_pch
+#define EmptyLegs_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "AppDelegate.h"
+#import <Parse/Parse.h>
+#import "SVProgressHUD.h"
+#import "ELDataController.h"
+#import "ELMainViewController.h"
+
+#endif
