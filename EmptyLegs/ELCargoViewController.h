@@ -10,4 +10,6 @@
 
 @interface ELCargoViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate>
 
+@property BOOL cargoMode;
+
 @end

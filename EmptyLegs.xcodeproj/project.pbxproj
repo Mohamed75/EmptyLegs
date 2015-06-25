@@ -12,7 +12,6 @@
 		AB5506791B3C30FF00E8E6B7 /* ELMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5506781B3C30FF00E8E6B7 /* ELMainViewController.m */; };
 		AB55067C1B3C30FF00E8E6B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB55067A1B3C30FF00E8E6B7 /* Main.storyboard */; };
 		AB55067E1B3C30FF00E8E6B7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB55067D1B3C30FF00E8E6B7 /* Images.xcassets */; };
-		AB5506811B3C30FF00E8E6B7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB55067F1B3C30FF00E8E6B7 /* LaunchScreen.xib */; };
 		AB55068D1B3C30FF00E8E6B7 /* EmptyLegsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB55068C1B3C30FF00E8E6B7 /* EmptyLegsTests.m */; };
 		AB5506981B3C334500E8E6B7 /* ELCargoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5506971B3C334500E8E6B7 /* ELCargoViewController.m */; };
 		AB5506A11B3C3F6400E8E6B7 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB55069A1B3C3F6400E8E6B7 /* SourceCodePro-Black.ttf */; };
@@ -47,6 +46,9 @@
 		AB5506DF1B3C821900E8E6B7 /* empty_leg_logo_03e.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5506D91B3C821900E8E6B7 /* empty_leg_logo_03e.png */; };
 		AB5506E01B3C821900E8E6B7 /* empty_leg_logo_03f.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5506DA1B3C821900E8E6B7 /* empty_leg_logo_03f.png */; };
 		AB5506E41B3C863700E8E6B7 /* ELDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5506E31B3C863700E8E6B7 /* ELDataController.m */; };
+		ABDDA90E1B3CA5A7005CB5BA /* ELContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDDA90D1B3CA5A7005CB5BA /* ELContactViewController.m */; };
+		ABDDA9101B3CB182005CB5BA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDDA90F1B3CB181005CB5BA /* MessageUI.framework */; };
+		ABDDA9131B3CB3DD005CB5BA /* ELDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDDA9121B3CB3DD005CB5BA /* ELDriverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +71,6 @@
 		AB5506781B3C30FF00E8E6B7 /* ELMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELMainViewController.m; sourceTree = "<group>"; };
 		AB55067B1B3C30FF00E8E6B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB55067D1B3C30FF00E8E6B7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AB5506801B3C30FF00E8E6B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AB5506861B3C30FF00E8E6B7 /* EmptyLegsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmptyLegsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB55068B1B3C30FF00E8E6B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB55068C1B3C30FF00E8E6B7 /* EmptyLegsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyLegsTests.m; sourceTree = "<group>"; };
@@ -114,6 +115,11 @@
 		AB5506DA1B3C821900E8E6B7 /* empty_leg_logo_03f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_leg_logo_03f.png; sourceTree = "<group>"; };
 		AB5506E21B3C863700E8E6B7 /* ELDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELDataController.h; sourceTree = "<group>"; };
 		AB5506E31B3C863700E8E6B7 /* ELDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELDataController.m; sourceTree = "<group>"; };
+		ABDDA90C1B3CA5A7005CB5BA /* ELContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELContactViewController.h; sourceTree = "<group>"; };
+		ABDDA90D1B3CA5A7005CB5BA /* ELContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELContactViewController.m; sourceTree = "<group>"; };
+		ABDDA90F1B3CB181005CB5BA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		ABDDA9111B3CB3DD005CB5BA /* ELDriverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELDriverViewController.h; sourceTree = "<group>"; };
+		ABDDA9121B3CB3DD005CB5BA /* ELDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELDriverViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABDDA9101B3CB182005CB5BA /* MessageUI.framework in Frameworks */,
 				AB5506C71B3C5C4400E8E6B7 /* SystemConfiguration.framework in Frameworks */,
 				AB5506C51B3C5C3A00E8E6B7 /* MobileCoreServices.framework in Frameworks */,
 				AB5506C31B3C5C1700E8E6B7 /* libsqlite3.0.dylib in Frameworks */,
@@ -176,7 +183,6 @@
 				AB5506751B3C30FF00E8E6B7 /* AppDelegate.m */,
 				AB55067A1B3C30FF00E8E6B7 /* Main.storyboard */,
 				AB55067D1B3C30FF00E8E6B7 /* Images.xcassets */,
-				AB55067F1B3C30FF00E8E6B7 /* LaunchScreen.xib */,
 				AB5506701B3C30FF00E8E6B7 /* Supporting Files */,
 			);
 			path = EmptyLegs;
@@ -185,6 +191,7 @@
 		AB5506701B3C30FF00E8E6B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABDDA90F1B3CB181005CB5BA /* MessageUI.framework */,
 				AB5506C61B3C5C4400E8E6B7 /* SystemConfiguration.framework */,
 				AB5506C41B3C5C3A00E8E6B7 /* MobileCoreServices.framework */,
 				AB5506C21B3C5C1700E8E6B7 /* libsqlite3.0.dylib */,
@@ -232,6 +239,10 @@
 				AB5506971B3C334500E8E6B7 /* ELCargoViewController.m */,
 				AB5506C81B3C5FE500E8E6B7 /* ELCreationTableViewCell.h */,
 				AB5506C91B3C5FE500E8E6B7 /* ELCreationTableViewCell.m */,
+				ABDDA90C1B3CA5A7005CB5BA /* ELContactViewController.h */,
+				ABDDA90D1B3CA5A7005CB5BA /* ELContactViewController.m */,
+				ABDDA9111B3CB3DD005CB5BA /* ELDriverViewController.h */,
+				ABDDA9121B3CB3DD005CB5BA /* ELDriverViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -372,7 +383,6 @@
 				AB5506DD1B3C821900E8E6B7 /* empty_leg_logo_03c.png in Resources */,
 				AB5506DC1B3C821900E8E6B7 /* empty_leg_logo_03b.png in Resources */,
 				AB5506E01B3C821900E8E6B7 /* empty_leg_logo_03f.png in Resources */,
-				AB5506811B3C30FF00E8E6B7 /* LaunchScreen.xib in Resources */,
 				AB5506A71B3C3F6400E8E6B7 /* SourceCodePro-Semibold.ttf in Resources */,
 				AB5506A11B3C3F6400E8E6B7 /* SourceCodePro-Black.ttf in Resources */,
 				AB5506A31B3C3F6400E8E6B7 /* SourceCodePro-ExtraLight.ttf in Resources */,
@@ -403,12 +413,14 @@
 			files = (
 				AB5506791B3C30FF00E8E6B7 /* ELMainViewController.m in Sources */,
 				AB5506D41B3C716D00E8E6B7 /* SVProgressHUD.m in Sources */,
+				ABDDA90E1B3CA5A7005CB5BA /* ELContactViewController.m in Sources */,
 				AB5506AA1B3C4BB300E8E6B7 /* ELCargoTableViewCell.m in Sources */,
 				AB5506E41B3C863700E8E6B7 /* ELDataController.m in Sources */,
 				AB5506981B3C334500E8E6B7 /* ELCargoViewController.m in Sources */,
 				AB5506CA1B3C5FE500E8E6B7 /* ELCreationTableViewCell.m in Sources */,
 				AB5506761B3C30FF00E8E6B7 /* AppDelegate.m in Sources */,
 				AB5506D21B3C716D00E8E6B7 /* SVIndefiniteAnimatedView.m in Sources */,
+				ABDDA9131B3CB3DD005CB5BA /* ELDriverViewController.m in Sources */,
 				AB5506731B3C30FF00E8E6B7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,14 +450,6 @@
 				AB55067B1B3C30FF00E8E6B7 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		AB55067F1B3C30FF00E8E6B7 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AB5506801B3C30FF00E8E6B7 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -535,6 +539,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EmptyLegs/parse-library-1.7.5",
@@ -551,6 +556,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EmptyLegs/parse-library-1.7.5",

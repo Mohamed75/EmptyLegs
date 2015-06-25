@@ -22,5 +22,9 @@
 @property (strong, nonatomic) UIWindow *window;
 
 
++ (void) callPhoneNumber:(NSString *) _number;
++ (BOOL) isValidUKPhoneNumber:(NSString *) _phoneNumber;
++ (BOOL) isValidEmail:(NSString *) _email;
+
 @end
 

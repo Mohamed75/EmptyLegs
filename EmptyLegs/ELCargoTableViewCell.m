@@ -25,7 +25,17 @@
         
         self.textView = [[UITextView alloc] initWithFrame:CGRectMake(40, 0, 240, 6000)];
         self.textView.backgroundColor = [UIColor clearColor];
+        self.textView.userInteractionEnabled = NO;
         [self addSubview:self.textView];
+        
+        self.contactButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 0, 240, 42)];
+        self.contactButton.backgroundColor = [UIColor whiteColor];
+        [self.contactButton setTitle:@"contact" forState:0];
+        [self.contactButton setTitleColor:[UIColor blackColor] forState:0];
+        [self.contactButton.titleLabel setFont:[UIFont fontWithName:@"SourceCodePro-Bold" size:18]];
+        [self.contactButton addTarget:self.responsable action:@selector(contactBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.contactButton];
+        self.contactButton.hidden = YES;
     }
     return self;
 }
@@ -62,8 +72,8 @@
     
     [text addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(title1.length+1, 13)];
     [text addAttribute:NSForegroundColorAttributeName value:SPECIAL_GREY range:NSMakeRange(title1.length+1, 13)];
-    [text addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(title1.length+12, title2.length-11)];
-    [text addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(title1.length+12, title2.length-11)];
+    [text addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(title1.length+12, title2.length-10)];
+    [text addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(title1.length+12, title2.length-10)];
     
     [text addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(title1.length+from.length+13, 3)];
     [text addAttribute:NSForegroundColorAttributeName value:SPECIAL_GREY range:NSMakeRange(title1.length+from.length+13, 3)];
@@ -81,7 +91,10 @@
     self.textView.attributedText = text;
     [self.textView sizeToFit];
     
-    return self.textView.frame.size.height+20;
+    self.contactButton.frame = CGRectMake(40, self.textView.frame.size.height+20, 240, 42);
+    self.contactButton.hidden = NO;
+    
+    return self.textView.frame.size.height+80;
 }
 
 

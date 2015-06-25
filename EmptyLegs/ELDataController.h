@@ -11,9 +11,12 @@
 @interface ELDataController : NSObject
 
 @property NSMutableArray *cargos;
+@property NSMutableArray *drivers;
+
 
 + (ELDataController *) getSharedInstance;
 
 - (void) loadCargos;
+- (void) loadDrivers;
 
 @end

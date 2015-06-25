@@ -11,7 +11,9 @@
 @interface ELCargoTableViewCell : UITableViewCell
 
 @property UITextView *textView;
+@property UIButton *contactButton;
 
+@property (weak) id responsable;
 
 - (long) setData:(PFObject *)data;
 

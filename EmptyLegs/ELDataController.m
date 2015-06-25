@@ -23,11 +23,26 @@ static ELDataController *sharedInstance;
 - (void) loadCargos{
     
     PFQuery *query = [PFQuery queryWithClassName:@"Cargo"];
+    query.limit = 1000;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error == nil){
             
             self.cargos = [NSMutableArray arrayWithArray:objects];
-            [[ELMainViewController getSharedInstance] endLoadingCargos:self.cargos];
+            [[ELMainViewController getSharedInstance] endLoadingCargos];
+        }
+    }];
+    [self loadDrivers];
+}
+
+- (void) loadDrivers{
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Driver"];
+    query.limit = 1000;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(error == nil){
+            
+            self.drivers = [NSMutableArray arrayWithArray:objects];
+            [[ELMainViewController getSharedInstance] endLoadingCargos];
         }
     }];
 }

@@ -9,6 +9,8 @@
 #import "ELMainViewController.h"
 #import "ELCargoViewController.h"
 #import "ELCargoTableViewCell.h"
+#import "ELContactViewController.h"
+#import "ELDriverViewController.h"
 
 
 @interface ELMainViewController ()
@@ -25,7 +27,10 @@
 
 
 @property ELCargoViewController *cargoViewController;
+@property ELDriverViewController *driverViewController;
 @property UIImageView *firstAnimation;
+
+@property ELContactViewController *contactViewController ;
 
 @end
 
@@ -118,9 +123,13 @@ static ELMainViewController *sharedInstance;
     [super viewWillAppear:animated];
 }
 
-- (void) endLoadingCargos:(NSMutableArray *)cargos{
+- (void) endLoadingCargos{
     
-    self.tableData = cargos;
+    if(self.cargoMode)
+        self.tableData = [ELDataController getSharedInstance].cargos;
+    else{
+        self.tableData = [ELDataController getSharedInstance].drivers;
+    }
     [self.firstAnimation stopAnimating];
     [self.firstAnimation removeFromSuperview];
     [self.tableView reloadData];
@@ -138,6 +147,10 @@ static ELMainViewController *sharedInstance;
     [self.driversButton setTitleColor:[UIColor whiteColor] forState:0];
     
     [self.cargoViewController.view removeFromSuperview];
+    [self.driverViewController.view removeFromSuperview];
+    
+    self.tableData = [ELDataController getSharedInstance].cargos;
+    [self.tableView reloadData];
 }
 
 - (void) driversBtnClicked:(id)sender{
@@ -151,17 +164,29 @@ static ELMainViewController *sharedInstance;
     [self.driversButton setTitleColor:[UIColor blackColor] forState:0];
     
     [self.cargoViewController.view removeFromSuperview];
+    [self.driverViewController.view removeFromSuperview];
+    
+    self.tableData = [ELDataController getSharedInstance].drivers;
+    [self.tableView reloadData];
 }
 
 - (void) addBtnClicked:(id)sender{
     
-    if(self.cargoMode){
+    //if(self.cargoMode){
         self.cargoViewController = [ELCargoViewController new];
         CGRect frame = self.cargoViewController.view.frame;
         frame.origin.y += 80;
         self.cargoViewController.view.frame = frame;
+        self.cargoViewController.cargoMode = self.cargoMode;
         [self.view addSubview:self.cargoViewController.view];
-    }
+        
+    /*}else{
+        self.driverViewController = [ELDriverViewController new];
+        CGRect frame = self.driverViewController.view.frame;
+        frame.origin.y += 80;
+        self.driverViewController.view.frame = frame;
+        [self.view addSubview:self.driverViewController.view];
+    }*/
 }
 
 
@@ -184,6 +209,7 @@ static ELMainViewController *sharedInstance;
         cell            = [[ELCargoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    cell.tag = indexPath.row;
     [cell setData:[self.tableData objectAtIndex:indexPath.row]];
     
     return cell;
@@ -197,6 +223,21 @@ static ELMainViewController *sharedInstance;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+}
+
+- (void) contactBtnClicked:(id)sender{
+    
+     self.contactViewController = [ELContactViewController new];
+    
+    ELCargoTableViewCell *cell = ((UIButton *)sender).superview;
+    PFObject *object = [self.tableData objectAtIndex:cell.tag];
+    
+    NSMutableDictionary *contact = [NSMutableDictionary new];
+    [contact setObject:object[@"phone"] forKey:@"phone"];
+    [contact setObject:object[@"email"] forKey:@"email"];
+    self.contactViewController.contact = contact;
+    
+    [self.view addSubview:self.contactViewController.view];
 }
 
 

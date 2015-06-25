@@ -9,6 +9,8 @@
 #import "ELCargoViewController.h"
 #import "ELCreationTableViewCell.h"
 
+#define NUMBER_CELL 8
+
 @interface ELCargoViewController ()
 
 @property UITableView *tableView;
@@ -52,7 +54,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     self.saveData = [NSMutableArray new];
-    for(int i = 0; i < 6; i++)
+    for(int i = 0; i < NUMBER_CELL; i++)
         [self.saveData addObject:@""];
     
     self.pickerStart = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, 250, 200)];
@@ -116,25 +118,59 @@
         }
     }
     
-    [SVProgressHUD show];
+    
     
     NSNumber *size = [NSNumber numberWithLong:((NSString *)self.saveData[0]).intValue];
     if(size == 0){
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"please enter a correct size" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
         [alertView show];
+        
+        return;
     }
     
-    PFObject *cargoObject = [PFObject objectWithClassName:@"Cargo"];
+    if(![AppDelegate isValidUKPhoneNumber:self.saveData[6]]){
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"sorry, invalid phone number" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        [alertView show];
+        
+        return;
+    }
+    if(![AppDelegate isValidEmail:self.saveData[7]]){
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"sorry, invalid email" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        [alertView show];
+        
+        return ;
+    }
+    
+    
+    
+    [SVProgressHUD show];
+    
+    PFObject *cargoObject;
+    if(self.cargoMode)
+        cargoObject = [PFObject objectWithClassName:@"Cargo"];
+    else
+        cargoObject = [PFObject objectWithClassName:@"Driver"];
     cargoObject[@"size"] = size;
     cargoObject[@"description"] = self.saveData[1];
     cargoObject[@"from"] = self.saveData[2];
     cargoObject[@"to"] = self.saveData[3];
     cargoObject[@"pickedAt"] = self.pickerStart.date;
     cargoObject[@"arriveAt"] = self.pickerEnd.date;
+    cargoObject[@"phone"] = self.saveData[6];
+    cargoObject[@"email"] = self.saveData[7];
     [cargoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
         [SVProgressHUD dismiss];
+        
+        if(self.cargoMode)
+            [[ELDataController getSharedInstance].cargos insertObject:cargoObject atIndex:0];
+        else
+            [[ELDataController getSharedInstance].drivers insertObject:cargoObject atIndex:0];
+        
+        [[ELMainViewController getSharedInstance] endLoadingCargos];
         [self.view removeFromSuperview];
     }];
 }
@@ -165,7 +201,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return NUMBER_CELL;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -212,6 +248,20 @@
         cell.textField.inputView = self.pickerEnd;
     }
     
+    if(indexPath.row == 6){
+        cell.title.text = @"phone";
+        cell.textField.placeholder = @"phone";
+        cell.textField.keyboardType = UIKeyboardTypeNumberPad;
+    }
+    
+    if(indexPath.row == 7){
+        cell.title.text = @"email";
+        cell.textField.placeholder = @"email";
+        cell.textField.keyboardType = UIKeyboardTypeEmailAddress;
+        cell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        cell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    }
+    
     cell.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:cell.textField.placeholder attributes:@{NSForegroundColorAttributeName: SPECIAL_GREY}];
     
     return cell;
@@ -251,12 +301,13 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self saveAllFields];
     long index = ((ELCreationTableViewCell *)textField.superview).tag;
-    if(index < 5){
+    if(index < NUMBER_CELL-1){
         ELCreationTableViewCell *nextCell = (ELCreationTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index+1 inSection:0]];
         [nextCell.textField becomeFirstResponder];
     }
     else
         [self doneBtnClicked:nil];
+    
     return YES;
 }
 

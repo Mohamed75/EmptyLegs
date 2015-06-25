@@ -43,6 +43,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[ELDataController getSharedInstance] loadCargos];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -52,5 +53,38 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
++ (void) callPhoneNumber:(NSString *) _number{
+    
+    NSString *phoneCallString = [NSString stringWithFormat:@"telprompt://%@", _number];
+    
+    if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:phoneCallString]])
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneCallString]];
+    
+    else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Sorry this feature is not available on this device" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        [alertView show];
+    }
+}
+
++ (BOOL) isValidUKPhoneNumber:(NSString *) _phoneNumber
+{
+    // check whether the phone number given is a valid UK mobile number
+    NSString *phoneRegexUK = @"^(07|00447|\\+447|\\+44\\(0\\)7)\\d{9}";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegexUK];
+    
+    return [phoneTest evaluateWithObject:[_phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""]];
+}
+
++ (BOOL) isValidEmail:(NSString *) _email {
+    
+    NSString *emailRegex    = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
+    NSPredicate *emailTest  = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:_email];
+}
+
 
 @end

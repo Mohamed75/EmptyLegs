@@ -13,7 +13,7 @@
 + (ELMainViewController *) getSharedInstance;
 
 
-- (void) endLoadingCargos:(NSMutableArray *)cargos;
+- (void) endLoadingCargos;
 
 @end
 
