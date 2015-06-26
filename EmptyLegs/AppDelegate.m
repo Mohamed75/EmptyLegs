@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate ()
 
@@ -28,6 +31,8 @@
     
     [[ELDataController getSharedInstance] loadCargos];
     
+    [Fabric with:@[CrashlyticsKit]];
+
     return YES;
 }
 

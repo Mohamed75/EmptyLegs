@@ -47,7 +47,7 @@
     self.doneButton = [[UIButton alloc] initWithFrame:CGRectMake(40, self.view.frame.size.height-140, 240, 42)];
     self.doneButton.backgroundColor = [UIColor whiteColor];
     [self.doneButton setTitle:@"done" forState:0];
-    [self.doneButton setTitleColor:[UIColor blackColor] forState:0];
+    [self.doneButton setTitleColor:SPECIAL_DARK forState:0];
     [self.doneButton.titleLabel setFont:[UIFont fontWithName:@"SourceCodePro-Bold" size:18]];
     [self.doneButton addTarget:self action:@selector(doneBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.doneButton];
@@ -144,6 +144,13 @@
         return ;
     }
     
+    if([self.pickerEnd.date compare:self.pickerStart.date] < 0){
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"arrival time must be later than pickup time" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        [alertView show];
+        
+        return ;
+    }
     
     
     [SVProgressHUD show];
@@ -206,17 +213,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = @"CreateCell";
+    NSString *cellIdentifier = [NSString stringWithFormat:@"CreateCell%ld", (long)indexPath.row];
     
-    ELCreationTableViewCell *cell  = [[ELCreationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    ELCreationTableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if ( cell == nil ){
+        cell            = [[ELCreationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
     cell.textField.delegate = self;
     cell.tag = indexPath.row;
     
     cell.textField.keyboardType = UIKeyboardTypeDefault;
     
     if(indexPath.row == 0){
-        cell.title.text = @"I need m2";
+        if(self.cargoMode)
+            cell.title.text = @"I need m3";
+        else
+            cell.title.text = @"I have m3";
         cell.textField.placeholder = @"cargo size";
         cell.textField.keyboardType = UIKeyboardTypeNumberPad;
     }
@@ -227,7 +240,10 @@
     }
     
     if(indexPath.row == 2){
-        cell.title.text = @"taken from";
+        if(self.cargoMode)
+            cell.title.text = @"taken from";
+        else
+            cell.title.text = @"going from";
         cell.textField.placeholder = @"location";
     }
     

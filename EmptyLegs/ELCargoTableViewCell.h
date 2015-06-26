@@ -15,6 +15,9 @@
 
 @property (weak) id responsable;
 
+@property BOOL cargoMode;
+
+
 - (long) setData:(PFObject *)data;
 
 @end

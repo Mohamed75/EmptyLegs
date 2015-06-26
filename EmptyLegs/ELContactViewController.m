@@ -35,7 +35,7 @@
     
     
     self.phoneButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 140, 240, 110)];
-    self.phoneButton.backgroundColor = [UIColor blackColor];
+    self.phoneButton.backgroundColor = SPECIAL_DARK;
     self.phoneButton.layer.borderColor = [UIColor whiteColor].CGColor;
     self.phoneButton.layer.borderWidth = 1;
     [self.phoneButton setTitle:@"phone" forState:0];
@@ -46,7 +46,7 @@
     
     
     self.emailButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 280, 240, 110)];
-    self.emailButton.backgroundColor = [UIColor blackColor];
+    self.emailButton.backgroundColor = SPECIAL_DARK;
     self.emailButton.layer.borderColor = [UIColor whiteColor].CGColor;
     self.emailButton.layer.borderWidth = 1;
     [self.emailButton setTitle:@"email" forState:0];

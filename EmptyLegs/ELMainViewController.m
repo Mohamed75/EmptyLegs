@@ -78,13 +78,14 @@ static ELMainViewController *sharedInstance;
     self.firstAnimation.animationRepeatCount    = 100;
     [self.firstAnimation startAnimating];
     
+    [self performSelector:@selector(endAnimations) withObject:nil afterDelay:3];
     
     
     self.cargosButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 40, 120, 40)];
     self.cargosButton.layer.borderColor = [UIColor whiteColor].CGColor;
     self.cargosButton.layer.borderWidth = 1;
     self.cargosButton.backgroundColor = [UIColor whiteColor];
-    [self.cargosButton setTitleColor:[UIColor blackColor] forState:0];
+    [self.cargosButton setTitleColor:SPECIAL_DARK forState:0];
     [self.cargosButton setTitle:@"cargo" forState:0];
     [self.cargosButton.titleLabel setFont:[UIFont fontWithName:@"SourceCodePro-Bold" size:20]];
     [self.cargosButton addTarget:self action:@selector(cargosBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -93,7 +94,7 @@ static ELMainViewController *sharedInstance;
     self.driversButton = [[UIButton alloc] initWithFrame:CGRectMake(160, 40, 120, 40)];
     self.driversButton.layer.borderColor = [UIColor whiteColor].CGColor;
     self.driversButton.layer.borderWidth = 1;
-    self.driversButton.backgroundColor = [UIColor blackColor];
+    self.driversButton.backgroundColor = SPECIAL_DARK;
     [self.driversButton setTitleColor:[UIColor whiteColor] forState:0];
     [self.driversButton setTitle:@"drivers" forState:0];
     [self.driversButton.titleLabel setFont:[UIFont fontWithName:@"SourceCodePro-Bold" size:20]];
@@ -117,6 +118,12 @@ static ELMainViewController *sharedInstance;
     [self.view addSubview:self.firstAnimation];
 }
 
+- (void) endAnimations{
+    
+    [self.firstAnimation stopAnimating];
+    [self.firstAnimation removeFromSuperview];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     
     
@@ -130,8 +137,7 @@ static ELMainViewController *sharedInstance;
     else{
         self.tableData = [ELDataController getSharedInstance].drivers;
     }
-    [self.firstAnimation stopAnimating];
-    [self.firstAnimation removeFromSuperview];
+    
     [self.tableView reloadData];
 }
 
@@ -141,9 +147,9 @@ static ELMainViewController *sharedInstance;
     self.cargoMode = YES;
     
     self.cargosButton.backgroundColor = [UIColor whiteColor];
-    [self.cargosButton setTitleColor:[UIColor blackColor] forState:0];
+    [self.cargosButton setTitleColor:SPECIAL_DARK forState:0];
     
-    self.driversButton.backgroundColor = [UIColor blackColor];
+    self.driversButton.backgroundColor = SPECIAL_DARK;
     [self.driversButton setTitleColor:[UIColor whiteColor] forState:0];
     
     [self.cargoViewController.view removeFromSuperview];
@@ -151,23 +157,25 @@ static ELMainViewController *sharedInstance;
     
     self.tableData = [ELDataController getSharedInstance].cargos;
     [self.tableView reloadData];
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 320, 100) animated:NO];
 }
 
 - (void) driversBtnClicked:(id)sender{
     
     self.cargoMode = NO;
     
-    self.cargosButton.backgroundColor = [UIColor blackColor];
+    self.cargosButton.backgroundColor = SPECIAL_DARK;
     [self.cargosButton setTitleColor:[UIColor whiteColor] forState:0];
     
     self.driversButton.backgroundColor = [UIColor whiteColor];
-    [self.driversButton setTitleColor:[UIColor blackColor] forState:0];
+    [self.driversButton setTitleColor:SPECIAL_DARK forState:0];
     
     [self.cargoViewController.view removeFromSuperview];
     [self.driverViewController.view removeFromSuperview];
     
     self.tableData = [ELDataController getSharedInstance].drivers;
     [self.tableView reloadData];
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 320, 100) animated:NO];
 }
 
 - (void) addBtnClicked:(id)sender{
@@ -210,6 +218,7 @@ static ELMainViewController *sharedInstance;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.tag = indexPath.row;
+    cell.cargoMode = self.cargoMode;
     [cell setData:[self.tableData objectAtIndex:indexPath.row]];
     
     return cell;

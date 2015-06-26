@@ -49,6 +49,8 @@
 		ABDDA90E1B3CA5A7005CB5BA /* ELContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDDA90D1B3CA5A7005CB5BA /* ELContactViewController.m */; };
 		ABDDA9101B3CB182005CB5BA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDDA90F1B3CB181005CB5BA /* MessageUI.framework */; };
 		ABDDA9131B3CB3DD005CB5BA /* ELDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDDA9121B3CB3DD005CB5BA /* ELDriverViewController.m */; };
+		ABDDA9171B3CBB60005CB5BA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDDA9151B3CBB60005CB5BA /* Fabric.framework */; };
+		ABDDA9181B3CBB60005CB5BA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDDA9161B3CBB60005CB5BA /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,8 @@
 		ABDDA90F1B3CB181005CB5BA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		ABDDA9111B3CB3DD005CB5BA /* ELDriverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELDriverViewController.h; sourceTree = "<group>"; };
 		ABDDA9121B3CB3DD005CB5BA /* ELDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELDriverViewController.m; sourceTree = "<group>"; };
+		ABDDA9151B3CBB60005CB5BA /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		ABDDA9161B3CBB60005CB5BA /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,8 +137,10 @@
 				AB5506C31B3C5C1700E8E6B7 /* libsqlite3.0.dylib in Frameworks */,
 				AB5506C11B3C5C0800E8E6B7 /* CFNetwork.framework in Frameworks */,
 				AB5506BF1B3C5BFB00E8E6B7 /* AudioToolbox.framework in Frameworks */,
+				ABDDA9181B3CBB60005CB5BA /* Crashlytics.framework in Frameworks */,
 				AB5506BD1B3C5B4800E8E6B7 /* ParseUI.framework in Frameworks */,
 				AB5506B91B3C5B4800E8E6B7 /* Parse.framework in Frameworks */,
+				ABDDA9171B3CBB60005CB5BA /* Fabric.framework in Frameworks */,
 				AB5506BA1B3C5B4800E8E6B7 /* ParseCrashReporting.framework in Frameworks */,
 				AB5506BB1B3C5B4800E8E6B7 /* ParseFacebookUtils.framework in Frameworks */,
 				AB5506B81B3C5B4800E8E6B7 /* Bolts.framework in Frameworks */,
@@ -191,6 +197,8 @@
 		AB5506701B3C30FF00E8E6B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABDDA9151B3CBB60005CB5BA /* Fabric.framework */,
+				ABDDA9161B3CBB60005CB5BA /* Crashlytics.framework */,
 				ABDDA90F1B3CB181005CB5BA /* MessageUI.framework */,
 				AB5506C61B3C5C4400E8E6B7 /* SystemConfiguration.framework */,
 				AB5506C41B3C5C3A00E8E6B7 /* MobileCoreServices.framework */,
@@ -306,6 +314,7 @@
 				AB5506691B3C30FF00E8E6B7 /* Sources */,
 				AB55066A1B3C30FF00E8E6B7 /* Frameworks */,
 				AB55066B1B3C30FF00E8E6B7 /* Resources */,
+				ABDDA9141B3CBB27005CB5BA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -345,6 +354,7 @@
 				TargetAttributes = {
 					AB55066C1B3C30FF00E8E6B7 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 9RJ2JN3DNK;
 					};
 					AB5506851B3C30FF00E8E6B7 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -405,6 +415,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ABDDA9141B3CBB27005CB5BA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 45190a17174d5369010e19cc2a47dd057b37066f 06bf925f294877b168963efb362e582cf1c7da610523165d69c3357259e97a42";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AB5506691B3C30FF00E8E6B7 /* Sources */ = {
@@ -540,15 +566,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gerd Busker (HBSNNTKS64)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gerd Busker (HBSNNTKS64)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EmptyLegs/parse-library-1.7.5",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = EmptyLegs/PrefixHeader.pch;
 				INFOPLIST_FILE = EmptyLegs/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "38ba2406-37f2-4caa-8ecc-8fe05938e78c";
 			};
 			name = Debug;
 		};
@@ -557,15 +588,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gerd Busker (HBSNNTKS64)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gerd Busker (HBSNNTKS64)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EmptyLegs/parse-library-1.7.5",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = EmptyLegs/PrefixHeader.pch;
 				INFOPLIST_FILE = EmptyLegs/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "38ba2406-37f2-4caa-8ecc-8fe05938e78c";
 			};
 			name = Release;
 		};
